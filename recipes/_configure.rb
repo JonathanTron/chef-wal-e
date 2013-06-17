@@ -28,7 +28,7 @@ directory node["wal-e"]["env_d_path"] do
 end
 
 wal_e_env_path = node["wal-e"]["env_path"]
-s3_config = if node["wal-e"]["use_encrypted_data_bag"]
+s3_config = if node["wal-e"]["s3"]["use_encrypted_data_bag"]
   Chef::EncryptedDataBagItem.load(
     node["wal-e"]["s3"]["data_bag"],
     node["wal-e"]["s3"]["data_bag_item"]

@@ -25,5 +25,5 @@ suites:
     wal-e:
       s3:
         data_bag_item: "wal_e_encrypted"
-      use_encrypted_data_bag: true
+        use_encrypted_data_bag: true
   encrypted_data_bag_secret_key_path: "test/data_bag_secret"
