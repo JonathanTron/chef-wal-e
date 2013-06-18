@@ -85,7 +85,7 @@ Attributes
     <td>
       a default host used to configure boto. This is required to ensure all
       commands work correctly when bucket is not created in the default S3 zone.
-      The list of possible host can be found at (AWS S3 Endpoint list)[http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region].
+      The list of possible host can be found at [AWS S3 Endpoint list](http://docs.aws.amazon.com/general/latest/gr/rande.html#s3_region).
       If no value is set then no boto's config file is created.
     </td>
     <td><tt>nil</tt></td>
