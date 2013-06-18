@@ -27,3 +27,14 @@ suites:
         data_bag_item: "wal_e_encrypted"
         use_encrypted_data_bag: true
   encrypted_data_bag_secret_key_path: "test/data_bag_secret"
+
+- name: s3_host
+  run_list:
+  - "recipe[chef-solo-search]"
+  - "recipe[wal-e_test::s3_host]"
+  - "recipe[minitest-handler]"
+  attributes:
+    wal-e:
+      s3:
+        default_host: "s3-eu-west-1.amazonaws.com"
+  encrypted_data_bag_secret_key_path: "test/data_bag_secret"

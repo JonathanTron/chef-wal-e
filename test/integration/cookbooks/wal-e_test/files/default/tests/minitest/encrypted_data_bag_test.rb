@@ -22,6 +22,11 @@ describe 'wal-e_test::encrypted_data_bag' do
     it "sets WALE_GPG_KEY_ID" do
       file("/etc/wal-e.d/env/WALE_GPG_KEY_ID").must_include "0xBB9E4B35"
     end
+
+    it "does not set boto (Python's S3 library) default host in config" do
+      file("/etc/boto.cfg").wont_exist
+    end
+
   end
 
 end

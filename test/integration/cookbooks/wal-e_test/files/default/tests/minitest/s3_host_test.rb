@@ -1,6 +1,6 @@
 require File.expand_path('../support/helpers', __FILE__)
 
-describe 'wal-e_test::default' do
+describe 'wal-e_test::s3_host' do
 
   include Helpers::WalETest
 
@@ -23,8 +23,10 @@ describe 'wal-e_test::default' do
       ::File.size(file("/etc/wal-e.d/env/WALE_GPG_KEY_ID").path).must_equal 0
     end
 
-    it "does not set boto (Python's S3 library) default host in config" do
-      file("/etc/boto.cfg").wont_exist
+    it "sets boto (Python's S3 library) default host in config" do
+      file("/etc/boto.cfg").must_include(
+        "[s3]\nhost=s3-eu-west-1.amazonaws.com"
+      )
     end
 
   end

@@ -94,3 +94,19 @@ file "#{wal_e_env_path}/WALE_GPG_KEY_ID" do
   action :create
   content s3_config["gpg_key_id"]
 end
+
+if s3_default_host = node["wal-e"]["s3"]["default_host"]
+  template "/etc/boto.cfg" do
+    source "boto.cfg.erb"
+    owner "root"
+    group postgres_group
+    mode "750"
+    variables({
+      s3_default_host: s3_default_host
+    })
+  end
+else
+  file "/etc/boto.cfg" do
+    action :delete
+  end
+end

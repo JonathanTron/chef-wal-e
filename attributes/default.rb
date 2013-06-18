@@ -11,5 +11,6 @@ default["wal-e"]["exe_with_env"] = "envdir #{default["wal-e"]["env_path"]} #{def
 default["wal-e"]["s3"]["data_bag"] = "aws_credentials"
 default["wal-e"]["s3"]["data_bag_item"] = "wal_e"
 default["wal-e"]["s3"]["use_encrypted_data_bag"] = false
+default["wal-e"]["s3"]["default_host"] = nil
 
 default["wal-e"]["postgres_group"] = "postgres"
