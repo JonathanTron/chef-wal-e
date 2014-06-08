@@ -1,6 +1,0 @@
-{
-  "id": "wal_e",
-  "secret_access_key": "a_big_secret",
-  "access_key_id": "Eve",
-  "bucket": "postgresql-backup"
-}

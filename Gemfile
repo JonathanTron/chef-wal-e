@@ -1,9 +1,15 @@
 source 'https://rubygems.org'
 
+gem 'berkshelf', '~> 3.0'
+
+group :test do
+  gem 'chefspec'
+  gem 'foodcritic', '~> 2.1'
+  gem 'strainer'
+end
+
 group :integration do
-  gem "chef", "~> 11.4.4"
-  gem "test-kitchen", "~> 1.0.0.alpha.7"
-  gem "kitchen-vagrant"
-  gem "berkshelf"
+  gem 'test-kitchen'
+  gem 'kitchen-vagrant'
   gem "thor-foodcritic"
 end

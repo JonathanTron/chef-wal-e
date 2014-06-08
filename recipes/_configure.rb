@@ -23,7 +23,7 @@ postgres_group = node["wal-e"]["postgres_group"]
 directory node["wal-e"]["env_d_path"] do
   owner "root"
   group postgres_group
-  mode "750"
+  mode "0750"
   action :create
 end
 
@@ -59,14 +59,14 @@ Chef::Application.fatal!(
 directory wal_e_env_path do
   owner "root"
   group postgres_group
-  mode "750"
+  mode "0750"
   action :create
 end
 
 file "#{wal_e_env_path}/AWS_SECRET_ACCESS_KEY" do
   owner "root"
   group postgres_group
-  mode "750"
+  mode "0750"
   action :create
   content s3_config["secret_access_key"]
 end
@@ -74,7 +74,7 @@ end
 file "#{wal_e_env_path}/AWS_ACCESS_KEY_ID" do
   owner "root"
   group postgres_group
-  mode "750"
+  mode "0750"
   action :create
   content s3_config["access_key_id"]
 end
@@ -82,17 +82,17 @@ end
 file "#{wal_e_env_path}/WALE_S3_PREFIX" do
   owner "root"
   group postgres_group
-  mode "750"
+  mode "0750"
   action :create
-  content "s3://#{s3_config["bucket"]}/#{node[:fqdn]}/wal-e"
+  content "s3://#{s3_config["bucket"]}/#{node["fqdn"]}/wal-e"
 end
 
 file "#{wal_e_env_path}/WALE_GPG_KEY_ID" do
   owner "root"
   group postgres_group
-  mode "750"
+  mode "0750"
   action :create
-  content s3_config["gpg_key_id"]
+  content s3_config["gpg_key_id"].to_s
 end
 
 if s3_default_host = node["wal-e"]["s3"]["default_host"]
@@ -100,7 +100,7 @@ if s3_default_host = node["wal-e"]["s3"]["default_host"]
     source "boto.cfg.erb"
     owner "root"
     group postgres_group
-    mode "750"
+    mode "0750"
     variables({
       s3_default_host: s3_default_host
     })
