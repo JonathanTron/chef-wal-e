@@ -18,7 +18,7 @@
 #
 
 include_recipe "python"
-include_recipe "daemontools"
+include_recipe "runit"
 
 # Install dependencies
 package "lzop"

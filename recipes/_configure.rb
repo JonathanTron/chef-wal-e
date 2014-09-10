@@ -19,7 +19,7 @@
 
 postgres_group = node["wal-e"]["postgres_group"]
 
-# Prepare daemontools envdir for wal-e s3 configs
+# Prepare envdir for wal-e s3 configs
 directory node["wal-e"]["env_d_path"] do
   owner "root"
   group postgres_group

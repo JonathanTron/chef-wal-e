@@ -20,8 +20,8 @@ describe 'wal-e::default' do
       expect(chef_run).to include_recipe 'python::default'
     end
 
-    it 'loads daemontools::default recipe' do
-      expect(chef_run).to include_recipe 'daemontools::default'
+    it 'loads runit::default recipe' do
+      expect(chef_run).to include_recipe 'runit::default'
     end
 
     it 'installs package lzop' do

@@ -13,7 +13,7 @@ Requirements
 - `ubuntu` - wal-e has only been tested on ubuntu
 
 #### cookbooks
-- `daemontools` - for the `daemontools` `envdir` command.
+- `runit` - for the `runit`'s `chpst` command.
 - `python` - for `python`, `virtualenv` and `pip` installation and LWRP.
 
 Attributes
@@ -31,7 +31,7 @@ Attributes
     <td><tt>['wal-e']['version']</tt></td>
     <td>String</td>
     <td>which version to install</td>
-    <td><tt>"0.6.2"</tt></td>
+    <td><tt>"0.7.1"</tt></td>
   </tr>
   <tr>
     <td><tt>['wal-e']['install_path']</tt></td>
@@ -61,7 +61,7 @@ Attributes
     <td><tt>['wal-e']['exe_with_env']</tt></td>
     <td>String</td>
     <td>command to use to have the full configuration via environment variable</td>
-    <td><tt>"envdir /etc/wal-e.d/env /opt/wal-e/bin/wal-e"</tt></td>
+    <td><tt>"chpst -e /etc/wal-e.d/env /opt/wal-e/bin/wal-e"</tt></td>
   </tr>
   <tr>
     <td><tt>['wal-e']['s3']['data_bag']</tt></td>
