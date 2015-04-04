@@ -24,6 +24,7 @@ include_recipe "runit"
 package "lzop"
 package "pv"
 package "libevent-dev"
+package "libffi-dev"
 
 # Create a virtualenv for wal-e
 python_virtualenv node["wal-e"]["install_path"] do

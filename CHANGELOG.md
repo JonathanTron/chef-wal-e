@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of wal-e.
 
+## 0.5.1
+
+* Update wal-e default installed version to 0.7.3
+* Install `libffi-dev` package so that wal-e installs correctly
+
 ## 0.5.0
 
 * Switch from `daemontools` (`envdir`) to `runit` (`chpst`)
