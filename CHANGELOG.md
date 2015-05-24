@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of wal-e.
 
+## 0.5.2
+
+* Fix specs and README
+
 ## 0.5.1
 
 * Update wal-e default installed version to 0.7.3

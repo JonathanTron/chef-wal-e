@@ -31,7 +31,7 @@ Attributes
     <td><tt>['wal-e']['version']</tt></td>
     <td>String</td>
     <td>which version to install</td>
-    <td><tt>"0.7.1"</tt></td>
+    <td><tt>"0.7.3"</tt></td>
   </tr>
   <tr>
     <td><tt>['wal-e']['install_path']</tt></td>

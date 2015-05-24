@@ -46,7 +46,7 @@ describe 'wal-e::default' do
     it 'installs wal-e via pip in virtualenv' do
       expect(chef_run).to install_python_pip('wal-e').with(
         virtualenv: '/opt/wal-e/',
-        version: '0.7.1'
+        version: '0.7.3'
       )
     end
 
