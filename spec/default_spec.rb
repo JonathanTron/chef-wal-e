@@ -12,7 +12,7 @@ describe 'wal-e::default' do
   end
 
   let(:chef_run) do
-    ChefSpec::Runner.new.converge described_recipe
+    ChefSpec::SoloRunner.new.converge described_recipe
   end
 
   context 'with default attributes' do
@@ -36,6 +36,10 @@ describe 'wal-e::default' do
       expect(chef_run).to install_package 'libevent-dev'
     end
 
+    it 'installs package libffi-dev' do
+      expect(chef_run).to install_package 'libffi-dev'
+    end
+
     it 'creates a python virtualenv for wal-e' do
       expect(chef_run).to create_python_virtualenv('/opt/wal-e/').with(
         owner: 'root',
@@ -46,7 +50,7 @@ describe 'wal-e::default' do
     it 'installs wal-e via pip in virtualenv' do
       expect(chef_run).to install_python_pip('wal-e').with(
         virtualenv: '/opt/wal-e/',
-        version: '0.7.3'
+        version: '0.8.0'
       )
     end
 
@@ -125,7 +129,7 @@ describe 'wal-e::default' do
 
   context 'setting an s3 default host' do
     let(:chef_run) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['wal-e']['s3']['default_host'] = 's3_default_host'
       end.converge described_recipe
     end
@@ -158,7 +162,7 @@ describe 'wal-e::default' do
     end
 
     let(:chef_run) do
-      ChefSpec::Runner.new do |node|
+      ChefSpec::SoloRunner.new do |node|
         node.set['wal-e']['s3']['use_encrypted_data_bag'] = true
         node.set['wal-e']['s3']['data_bag_item'] = 'wal_e_encrypted'
       end.converge described_recipe

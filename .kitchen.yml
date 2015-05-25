@@ -16,4 +16,4 @@ platforms:
 suites:
   - name: default
     run_list:
-    - "recipe[wal-e_test::default]"
+    - "recipe[wal-e::default]"

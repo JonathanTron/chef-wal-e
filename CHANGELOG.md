@@ -2,6 +2,11 @@
 
 This file is used to list changes made in each version of wal-e.
 
+## 0.6.0
+
+* Update wal-e default installed version to 0.8.0
+* Drop testing on Ruby 1.9.3
+
 ## 0.5.2
 
 * Fix specs and README
