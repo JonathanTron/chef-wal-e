@@ -2,6 +2,14 @@
 
 This file is used to list changes made in each version of wal-e.
 
+## 0.6.1
+
+* Update wal-e default installed version to 0.8.1
+* Ensure Greenlet 0.4.9 is installed on Ubuntu 12.04 as 0.4.10 brings
+  incompatibility due to binary compiled with Python 2.7.4 which is not
+  compatible with Python 2.7.3 (which is the last version available on
+  Ubuntu 12.04)
+
 ## 0.6.0
 
 * Update wal-e default installed version to 0.8.0

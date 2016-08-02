@@ -33,6 +33,14 @@ python_virtualenv node["wal-e"]["install_path"] do
   action :create
 end
 
+if node.platform=="ubuntu" && node.platform_version =~ /^12.04/
+  # Ensure we're using compatible greenlet version on ubuntu 12.04
+  python_pip "greenlet" do
+    virtualenv node["wal-e"]["install_path"]
+    version "0.4.9"
+  end
+end
+
 # Install wal-e via pip in a virtualenv
 python_pip "wal-e" do
   virtualenv node["wal-e"]["install_path"]
