@@ -38,6 +38,7 @@ if node.platform=="ubuntu" && node.platform_version =~ /^12.04/
   python_pip "greenlet" do
     virtualenv node["wal-e"]["install_path"]
     version "0.4.9"
+    options "--no-binary"
   end
 end
 

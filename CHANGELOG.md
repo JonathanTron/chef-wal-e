@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of wal-e.
 
+## 0.6.2
+
+* Update Greenlet installation to not install binary on Ubuntu 12.04
+
 ## 0.6.1
 
 * Update wal-e default installed version to 0.8.1
