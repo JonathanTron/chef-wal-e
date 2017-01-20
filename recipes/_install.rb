@@ -34,11 +34,14 @@ python_virtualenv node["wal-e"]["install_path"] do
 end
 
 if node.platform=="ubuntu" && node.platform_version =~ /^12.04/
-  # Ensure we're using compatible greenlet version on ubuntu 12.04
+  # Ensure we're using compatible greenlet/gevent version on ubuntu 12.04
   python_pip "greenlet" do
     virtualenv node["wal-e"]["install_path"]
     version "0.4.9"
-    options "--no-binary"
+  end
+  python_pip "gevent" do
+    virtualenv node["wal-e"]["install_path"]
+    version "0.13.8"
   end
 end
 
