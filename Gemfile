@@ -3,8 +3,9 @@ source 'https://rubygems.org'
 gem 'berkshelf', '~> 3.0'
 
 group :test do
+  gem 'fauxhai', '5.4.0'
   gem 'chefspec'
-  gem 'foodcritic', '~> 2.1'
+  gem 'foodcritic'
   gem 'strainer'
 end
 

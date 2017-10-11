@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe "python"
 include_recipe "runit"
 
 # Install dependencies
@@ -26,27 +25,31 @@ package "pv"
 package "libevent-dev"
 package "libffi-dev"
 
+# Ensure python 2.x is installed
+python_runtime "2"
+
 # Create a virtualenv for wal-e
 python_virtualenv node["wal-e"]["install_path"] do
-  owner "root"
+  user "root"
   group node["wal-e"]["postgres_group"]
+  python "2"
   action :create
 end
 
-if node.platform=="ubuntu" && node.platform_version =~ /^12.04/
+if node["platform"]=="ubuntu" && node["platform_version"] =~ /^12.04/
   # Ensure we're using compatible greenlet/gevent version on ubuntu 12.04
-  python_pip "greenlet" do
+  python_package "greenlet" do
     virtualenv node["wal-e"]["install_path"]
     version "0.4.9"
   end
-  python_pip "gevent" do
+  python_package "gevent" do
     virtualenv node["wal-e"]["install_path"]
     version "0.13.8"
   end
 end
 
 # Install wal-e via pip in a virtualenv
-python_pip "wal-e" do
+python_package "wal-e" do
   virtualenv node["wal-e"]["install_path"]
   version node["wal-e"]["version"]
 end

@@ -79,6 +79,14 @@ file "#{wal_e_env_path}/AWS_ACCESS_KEY_ID" do
   content s3_config["access_key_id"]
 end
 
+file "#{wal_e_env_path}/AWS_REGION" do
+  owner "root"
+  group postgres_group
+  mode "0750"
+  action :create
+  content s3_config["region"]
+end
+
 file "#{wal_e_env_path}/WALE_S3_PREFIX" do
   owner "root"
   group postgres_group

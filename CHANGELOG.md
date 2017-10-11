@@ -2,6 +2,18 @@
 
 This file is used to list changes made in each version of wal-e.
 
+## 0.7.0
+
+* Update default to wal-e 0.9.2 (latest version to support python 2.7)
+* Switch from [python](https://github.com/poise/python) to
+  [poise-python](https://github.com/poise/poise-python)
+
+***Breaking changes***
+
+Starting with v0.9.0 wal-e now requires a new environment variable `AWS_REGION`
+to be set, this cookbook now expect the value for this variable to be set in the
+credential data_bag under the key `region`.
+
 ## 0.6.3
 
 * Make sure we're using gevent 0.13.8 on Ubuntu 12.04

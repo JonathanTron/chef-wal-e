@@ -119,7 +119,8 @@ Here's the expected content of such a `data_bag item`:
   "id": "wal_e",
   "secret_access_key": "xxxxxxx",
   "access_key_id": "xxxxxxx",
-  "bucket": "postgresql-backup"
+  "bucket": "postgresql-backup",
+  "region": "us-east-1"
 }
 ```
 
@@ -137,6 +138,7 @@ details.
   "secret_access_key": "xxxxxxx",
   "access_key_id": "xxxxxxx",
   "bucket": "postgresql-backup",
+  "region": "us-east-1",
   "gpg_key_id": "0xBB9E4B35"
 }
 ```
