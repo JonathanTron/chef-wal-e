@@ -25,18 +25,19 @@ package "pv"
 package "libevent-dev"
 package "libffi-dev"
 
-# Ensure python 2.x is installed
-python_runtime "2"
 
-# Create a virtualenv for wal-e
-python_virtualenv node["wal-e"]["install_path"] do
-  user "root"
-  group node["wal-e"]["postgres_group"]
-  python "2"
-  action :create
-end
+if node["platform_version"] =~ /^12.04/
+  # Ensure python 2.x is installed
+  python_runtime "2"
 
-if node["platform"]=="ubuntu" && node["platform_version"] =~ /^12.04/
+  # Create a virtualenv for wal-e
+  python_virtualenv node["wal-e"]["install_path"] do
+    user "root"
+    group node["wal-e"]["postgres_group"]
+    python "2"
+    action :create
+  end
+
   # Ensure we're using compatible greenlet/gevent version on ubuntu 12.04
   python_package "greenlet" do
     virtualenv node["wal-e"]["install_path"]
@@ -45,6 +46,17 @@ if node["platform"]=="ubuntu" && node["platform_version"] =~ /^12.04/
   python_package "gevent" do
     virtualenv node["wal-e"]["install_path"]
     version "0.13.8"
+  end
+else
+  # Ensure python 3.x is installed
+  python_runtime "3"
+
+  # Create a virtualenv for wal-e
+  python_virtualenv node["wal-e"]["install_path"] do
+    user "root"
+    group node["wal-e"]["postgres_group"]
+    python "3"
+    action :create
   end
 end
 

@@ -2,6 +2,14 @@
 
 This file is used to list changes made in each version of wal-e.
 
+## 0.8.0
+
+* Switch to python 3 and wal-e 1.1.0 on ubuntu version more recent than 12.04. * Stick to python 2 and wal-e 0.9.2 on ubuntu 12.04... 
+
+***WARNING***
+
+wal-e version older than 1.1.0 are not compatible with PostgreSQL 10, this means using PostgreSQL 10 with this cookbook is not possible on Ubuntu 12.04.
+
 ## 0.7.0
 
 * Update default to wal-e 0.9.2 (latest version to support python 2.7)

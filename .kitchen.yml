@@ -1,17 +1,15 @@
 ---
 driver:
-  name: vagrant
+  name: docker
+  use_sudo: false
   require_chef_omnibus: "latest"
-  customize:
-    memory: 1024
-    cpus: 2
-    cpuexecutioncap: 80
 
 provisioner:
   name: chef_solo
 
 platforms:
   - name: ubuntu-12.04
+  - name: ubuntu-16.04
 
 suites:
   - name: default

@@ -28,17 +28,10 @@ directory node["wal-e"]["env_d_path"] do
 end
 
 wal_e_env_path = node["wal-e"]["env_path"]
-s3_config = if node["wal-e"]["s3"]["use_encrypted_data_bag"]
-  Chef::EncryptedDataBagItem.load(
-    node["wal-e"]["s3"]["data_bag"],
-    node["wal-e"]["s3"]["data_bag_item"]
-  )
-else
-  data_bag_item(
-    node["wal-e"]["s3"]["data_bag"],
-    node["wal-e"]["s3"]["data_bag_item"]
-  )
-end
+s3_config = data_bag_item(
+  node["wal-e"]["s3"]["data_bag"],
+  node["wal-e"]["s3"]["data_bag_item"]
+)
 
 Chef::Application.fatal!(
   "Could not find " +

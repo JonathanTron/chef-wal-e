@@ -1,6 +1,11 @@
 include_attribute "poise-python::default"
 
-default["wal-e"]["version"] = "0.9.2"
+case node["platform_version"]
+when /^12.04/
+  default["wal-e"]["version"] = "0.9.2"
+else
+  default["wal-e"]["version"] = "1.1.0"
+end
 
 default["wal-e"]["install_path"] = "/opt/wal-e/"
 default["wal-e"]["env_d_path"] = "/etc/wal-e.d/"

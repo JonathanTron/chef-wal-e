@@ -40,25 +40,26 @@ require 'spec_helper'
         expect(chef_run).to install_package 'libffi-dev'
       end
 
-      it 'installs python 2.x' do
-        expect(chef_run).to install_python_runtime('2')
-      end
-
-      it 'creates a python virtualenv for wal-e' do
-        expect(chef_run).to create_python_virtualenv('/opt/wal-e/').with(
-          user: 'root',
-          group: 'postgres'
-        )
-      end
-
-      it 'installs wal-e via pip in virtualenv' do
-        expect(chef_run).to install_python_package('wal-e').with(
-          # virtualenv: '/opt/wal-e/',
-          version: '0.9.2'
-        )
-      end
-
       if ubuntu_version=='12.04'
+        it 'installs python 2.x' do
+          expect(chef_run).to install_python_runtime('2')
+        end
+
+        it 'creates a python virtualenv for wal-e' do
+          expect(chef_run).to create_python_virtualenv('/opt/wal-e/').with(
+            user: 'root',
+            group: 'postgres',
+            python: '/usr/bin/python2.7'
+          )
+        end
+
+        it 'installs wal-e via pip in virtualenv' do
+          expect(chef_run).to install_python_package('wal-e').with(
+            # virtualenv: '/opt/wal-e/',
+            version: '0.9.2'
+          )
+        end
+
         it 'installs greenlet 0.4.9 via pip in virtualenv' do
           expect(chef_run).to install_python_package('greenlet').with(
             # virtualenv: '/opt/wal-e/',
@@ -73,6 +74,25 @@ require 'spec_helper'
           )
         end
       else
+        it 'installs python 3.x' do
+          expect(chef_run).to install_python_runtime('3')
+        end
+
+        it 'creates a python virtualenv for wal-e' do
+          expect(chef_run).to create_python_virtualenv('/opt/wal-e/').with(
+            user: 'root',
+            group: 'postgres',
+            python: '/usr/bin/python3.5'
+          )
+        end
+
+        it 'installs wal-e via pip in virtualenv' do
+          expect(chef_run).to install_python_package('wal-e').with(
+            # virtualenv: '/opt/wal-e/',
+            version: '1.1.0'
+          )
+        end
+
         it 'does not install greenlet via pip in virtualenv' do
           expect(chef_run).not_to install_python_package('greenlet')
         end
@@ -196,13 +216,11 @@ require 'spec_helper'
     context 'using encrypted databag' do
 
       before do
-        allow(Chef::EncryptedDataBagItem).to receive(:load).with(
-          'aws_credentials', 'wal_e_encrypted'
-        ).and_return({
-          'secret_access_key' => 'secret_from_encrypted',
-          'access_key_id' => 'secret_access_key_from_encrypted',
-          'region' => 'aws_region_from_encrypted',
-          'bucket' => 'eve_from_encrypted',
+        stub_data_bag_item('aws_credentials', 'wal_e_encrypted').and_return({
+          secret_access_key: 'secret_from_encrypted',
+          access_key_id: 'secret_access_key_from_encrypted',
+          region: 'aws_region_from_encrypted',
+          bucket: 'eve_from_encrypted',
         })
       end
 
