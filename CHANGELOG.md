@@ -2,6 +2,10 @@
 
 This file is used to list changes made in each version of wal-e.
 
+## 0.8.1
+
+* Ensure we're install backend packages too
+
 ## 0.8.0
 
 * Switch to python 3 and wal-e 1.1.0 on ubuntu version more recent than 12.04. * Stick to python 2 and wal-e 0.9.2 on ubuntu 12.04... 

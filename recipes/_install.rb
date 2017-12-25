@@ -37,16 +37,6 @@ if node["platform_version"] =~ /^12.04/
     python "2"
     action :create
   end
-
-  # Ensure we're using compatible greenlet/gevent version on ubuntu 12.04
-  python_package "greenlet" do
-    virtualenv node["wal-e"]["install_path"]
-    version "0.4.9"
-  end
-  python_package "gevent" do
-    virtualenv node["wal-e"]["install_path"]
-    version "0.13.8"
-  end
 else
   # Ensure python 3.x is installed
   python_runtime "3"
@@ -57,6 +47,14 @@ else
     group node["wal-e"]["postgres_group"]
     python "3"
     action :create
+  end
+end
+
+# Install backend dependencies first so we can control versions
+node["wal-e"]["deps"].each do |pkg_name, pkg_version|
+  python_package pkg_name do
+    virtualenv node["wal-e"]["install_path"]
+    version pkg_version
   end
 end
 
